@@ -1,4 +1,4 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 /* eslint-disable */
 
 var path = require("path");
@@ -25,6 +25,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        exclude: [/node_modules/, /assets\/src/],
+        use: [{ loader: "babel-loader" }]
+      },
+      {
+        test: /\.(src|js|jsx)$/,
+        include: path.join(__dirname, 'assets/code'),
+        use: [{ loader: 'raw-loader' }],
+      },
+      {
         test: /\.md$/,
         use: [
           {
@@ -36,15 +46,6 @@ module.exports = {
             options: {
               gfm: false
             }
-          }
-        ]
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader"
           }
         ]
       },
@@ -89,7 +90,5 @@ module.exports = {
 
   optimization: {
     minimize: true,
-
-    minimizer: [new UglifyJsPlugin()]
   }
 };

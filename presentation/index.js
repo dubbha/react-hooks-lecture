@@ -41,8 +41,7 @@ const images = {
 
 const src = {
   hello: require('../assets/code/hello.jsx'),
-  hello2: require('../assets/code/hello2.jsx'),
-  hello3: require('../assets/code/hello3.src'),
+  hello2: require('../assets/code/hello2.jsx')
 };
 
 // Require CSS
