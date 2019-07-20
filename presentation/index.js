@@ -16,7 +16,7 @@ import {
   ListItem,
   Notes,
   Quote,
-  Slide as SpectacleSlide,
+  Slide,
   Text,
   CodePane
 } from 'spectacle';
@@ -25,21 +25,18 @@ import {
 // import createTheme from 'spectacle/lib/themes/default';
 import createTheme from '../assets/theme';
 
-// Break out of the 1000x700 box
-// https://github.com/FormidableLabs/spectacle/issues/500
-const Slide = styled(SpectacleSlide) `
-  :first-child {
-    max-width: 90%;
-    max-height: 90%;
-  }
-`;
-
 const images = {
+  useYourBrain: require('../assets/useYourBrain.webp'),
+  marvel: require('../assets/marvel.jpg'),
+  karloff: require('../assets/karloff.jpg'),
+  hooks: require('../assets/hooks.jpg'),
+  hooksBlurred: require('../assets/hooksBlurred.jpg'),
+  //
   formidagon: require('../assets/formidable-logo.svg'),
   goodWork: require('../assets/good-work.gif')
 };
 
-const src = {
+const sources = {
   hello: require('../assets/code/hello.jsx'),
   hello2: require('../assets/code/hello2.jsx')
 };
@@ -49,16 +46,114 @@ require('normalize.css');
 
 const theme = createTheme(
   {
-    primary: 'white',
-    secondary: '#1F2022',
-    tertiary: '#03A9FC',
-    quaternary: '#CECECE'
+    primary: 'black',
+    secondary: 'white',
+    tertiary: '#c11b01',
+    quaternary: '#cecece',
+    brainDark: '#c11b01',
+    brainLight: '#f08920',
+    blood: '#bb0a1e',
+    bronze: '#cd7f32',
+    asphalt: '#222f38',
+    fire: '#c2261f',
+    gray: '#1F2022'
   },
   {
     primary: 'Montserrat',
     secondary: 'Helvetica'
   }
 );
+
+// Break out of the 1000x700 box
+// https://github.com/FormidableLabs/spectacle/issues/500
+const FullScreenSlide = styled(Slide) `
+  :first-child {
+    max-width: 100%;
+    max-height: 100%;
+    padding: ${(props) => props.padding || 0};
+  }
+`;
+
+const FullScreenImage = ({
+  src,
+  align = 'center',
+  style = {}
+}) => {
+  let margin;
+  switch (align) {
+    case 'left':
+      margin = '0 auto 0 0';
+      break;
+    case 'right':
+      margin = '0 0 0 auto';
+      break;
+    case 'center':
+    default:
+      margin = '0 auto';
+  }
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: '100%',
+        width: '100%',
+        ...style
+      }}
+    >
+      <Image
+        src={src}
+        style={{
+          height: '100%',
+          margin
+        }}
+      />
+    </div>
+  );
+};
+
+const CornerText = ({ top, right, bottom, left, children }) => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top,
+        right,
+        bottom,
+        left,
+      }}
+    >
+      <Text
+        caps
+        textSize={'3em'}
+        style={{
+          textAlign: 'left',
+        }}
+      >
+        {children}
+      </Text>
+    </div>
+  );
+};
+
+const styles = {
+  brain: {
+    color: theme.screen.colors.brainDark,
+  },
+  brain3D: {
+    color: theme.screen.colors.brainDark,
+    textShadow: `${theme.screen.colors.brainLight} 0px 1px 0px,
+      ${theme.screen.colors.brainLight} 0px 2px 0px,
+      ${theme.screen.colors.brainLight} 0px 3px 0px,
+      ${theme.screen.colors.brainLight} 0px 4px 0px`
+  },
+  brain3DLight: {
+    color: theme.screen.colors.brainDark,
+    textShadow: `${theme.screen.colors.brainLight} 0px 2px 0px`
+  },
+};
 
 export default class Presentation extends React.Component {
   render() {
@@ -69,15 +164,46 @@ export default class Presentation extends React.Component {
         theme={theme}
         showFullscreenControl
       >
-        <Slide bgColor="primary">
-          <Heading size={6} fit caps lineHeight={1} textColor="secondary">
+        <FullScreenSlide padding="1.2em">
+          <FullScreenImage src={images.useYourBrain} />
+        </FullScreenSlide>
+        <Slide bgImage={images.marvel} />
+        {/* <FullScreenImage src={images.marvel} /> */}
+        <Slide bgImage={images.karloff} />
+        {/* <FullScreenImage src={images.karloff} /> */}
+        <FullScreenSlide bgImage={images.hooks}>
+          <CornerText top={130} left={77}>
+            <Heading caps size={1} style={styles.brain3D}>React Hooks</Heading>
+          </CornerText>
+          <CornerText right={77} bottom={40}>
+            <Heading size={5} textAlign="right" textColor="quaternary">performed by</Heading>
+            <Heading size={5} textAlign="right" textColor="quaternary">
+              Oleksiy <span style={styles.brain3DLight}>Лёша</span> Dubovyk
+            </Heading>
+          </CornerText>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="1.2em">
+          <Heading size={3} caps lineHeight={1} textColor="tertiary">
             Heading
           </Heading>
           <CodePane
             lang="jsx"
-            source={src.hello}
+            source={sources.hello}
+            theme="light"
+            height="60vh"
+            style={{ overflowY: 'scroll' }}
           />
-        </Slide>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="1.2em">
+          <Heading size={3} caps lineHeight={1} textColor="tertiary">
+            Heading
+          </Heading>
+          <CodePane
+            lang="jsx"
+            source={sources.hello2}
+            theme="dark"
+          />
+        </FullScreenSlide>
         <Slide bgColor="primary">
           <Heading size={6} caps lineHeight={1} textColor="secondary">
             Heading
@@ -86,7 +212,7 @@ export default class Presentation extends React.Component {
             contentEditable
             theme="light"
             lang="jsx"
-            source={src.hello2}
+            source={sources.hello2}
           />
         </Slide>
         <Slide transition={['zoom']} bgColor="primary">
@@ -97,10 +223,10 @@ export default class Presentation extends React.Component {
             open the presentation/index.js file to get started
           </Text>
         </Slide>
-        <Slide bgColor="secondary">
+        <Slide bgImage={images.hooksBlurred}>
           <Image src={images.formidagon} width={800} />
         </Slide>
-        <Slide transition={['fade']} bgColor="tertiary">
+        <Slide transition={['fade']} bgColor="tertiary" bgImage={images.hooksBlurred}>
           <Heading size={6} textColor="primary" caps>
             Typography
           </Heading>

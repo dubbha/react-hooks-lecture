@@ -84,6 +84,16 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.webp$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { mimetype: 'image/webp' }
+          }
+        ],
+        include: path.join(__dirname, 'assets')
       }
     ]
   },

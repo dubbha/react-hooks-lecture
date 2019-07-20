@@ -229,7 +229,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       },
       codePane: {
         margin: 'auto',
-        fontSize: '2rem', // 0.8rem
+        fontSize: '2.05rem', // 0.8rem
         fontWeight: 'normal',
         minWidth: '100%',
         maxWidth: '100%' // maxWidth: 800

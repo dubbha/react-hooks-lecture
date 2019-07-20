@@ -10,8 +10,8 @@ Spectacle NOTE: This syntax theme was modified to work with react-live and emoti
 */
 
 export default css`
-  background: #faf8f5;
-  color: #728fcb;
+  background: #cecece;
+  color: #c11b01;
 
   & .token.comment,
   & .token.prolog,
@@ -21,7 +21,7 @@ export default css`
   }
 
   & .token.punctuation {
-    color: #b6ad9a;
+    color: #8e8d8b;
   }
 
   & .token.namespace {
@@ -31,12 +31,12 @@ export default css`
   & .token.tag,
   & .token.operator,
   & .token.number {
-    color: #063289;
+    color: #f08920;
   }
 
   & .token.property,
   & .token.function {
-    color: #b29762;
+    color: #c11b01;
   }
 
   & .token.tag-id,
@@ -62,7 +62,7 @@ export default css`
   & .token.statement,
   & .token.regex,
   & .token.atrule {
-    color: #728fcb;
+    color: #1a1613;
   }
 
   & .token.placeholder,

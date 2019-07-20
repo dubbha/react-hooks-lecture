@@ -9,6 +9,8 @@
   "react/prefer-es6-class": 0
   "react/no-multi-comp": 0
   "quotes": [2, "single"]
+  "react/prop-types": 0
+  "comma-dangle": 0
 "env":
   "browser": true,
   "node": true
