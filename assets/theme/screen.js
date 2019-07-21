@@ -176,7 +176,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       bar: {
         container: {
           position: 'absolute',
-          height: '10px',
+          height: '3px',
           width: '100%',
           bottom: 0,
           left: 0,
@@ -229,7 +229,7 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
       },
       codePane: {
         margin: 'auto',
-        fontSize: '2.05rem', // 0.8rem
+        fontSize: '2rem', // 0.8rem
         fontWeight: 'normal',
         minWidth: '100%',
         maxWidth: '100%' // maxWidth: 800

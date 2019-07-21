@@ -10,7 +10,7 @@ Spectacle NOTE: This syntax theme was modified to work with react-live and emoti
 */
 
 export default css`
-  background: #cecece;
+  background: #ffffd9;
   color: #c11b01;
 
   & .token.comment,

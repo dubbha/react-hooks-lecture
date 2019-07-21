@@ -162,7 +162,9 @@ export default class Presentation extends React.Component {
         transition={['zoom', 'slide']}
         transitionDuration={500}
         theme={theme}
-        showFullscreenControl
+        showFullscreenControl={false}
+        controls={false}
+        progress="bar"
       >
         <FullScreenSlide padding="1.2em">
           <FullScreenImage src={images.useYourBrain} />
@@ -182,7 +184,7 @@ export default class Presentation extends React.Component {
             </Heading>
           </CornerText>
         </FullScreenSlide>
-        <FullScreenSlide bgImage={images.hooksBlurred} padding="1.2em">
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em 0.6em 0.4em">
           <Heading size={3} caps lineHeight={1} textColor="tertiary">
             Heading
           </Heading>
@@ -190,7 +192,7 @@ export default class Presentation extends React.Component {
             lang="jsx"
             source={sources.hello}
             theme="light"
-            height="60vh"
+            height="75vh"
             style={{ overflowY: 'scroll' }}
           />
         </FullScreenSlide>
