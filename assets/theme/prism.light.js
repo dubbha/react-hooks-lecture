@@ -10,7 +10,7 @@ Spectacle NOTE: This syntax theme was modified to work with react-live and emoti
 */
 
 export default css`
-  background: #ffffd9;
+  background: #fffcf5;
   color: #c11b01;
 
   & .token.comment,
@@ -46,7 +46,7 @@ export default css`
   }
 
   & .token.attr-name {
-    color: #896724;
+    color: #948870;
   }
 
   & .token.boolean,

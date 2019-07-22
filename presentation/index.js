@@ -66,7 +66,7 @@ const theme = createTheme(
 
 // Break out of the 1000x700 box
 // https://github.com/FormidableLabs/spectacle/issues/500
-const FullScreenSlide = styled(Slide) `
+const FullScreenSlide = styled(Slide)`
   :first-child {
     max-width: 100%;
     max-height: 100%;
@@ -114,7 +114,7 @@ const FullScreenImage = ({
   );
 };
 
-const CornerText = ({ top, right, bottom, left, children }) => {
+const Corner = ({ top, right, bottom, left, children }) => {
   return (
     <div
       style={{
@@ -125,15 +125,7 @@ const CornerText = ({ top, right, bottom, left, children }) => {
         left,
       }}
     >
-      <Text
-        caps
-        textSize={'3em'}
-        style={{
-          textAlign: 'left',
-        }}
-      >
         {children}
-      </Text>
     </div>
   );
 };
@@ -151,7 +143,9 @@ const styles = {
   },
   brain3DLight: {
     color: theme.screen.colors.brainDark,
-    textShadow: `${theme.screen.colors.brainLight} 0px 2px 0px`
+    textShadow: `${theme.screen.colors.brainLight} 0px 1px 0px,
+      ${theme.screen.colors.brainLight} 0px 2px 0px,
+      ${theme.screen.colors.brainLight} 0px 3px 0px,`
   },
 };
 
@@ -174,15 +168,15 @@ export default class Presentation extends React.Component {
         <Slide bgImage={images.karloff} />
         {/* <FullScreenImage src={images.karloff} /> */}
         <FullScreenSlide bgImage={images.hooks}>
-          <CornerText top={130} left={77}>
-            <Heading caps size={1} style={styles.brain3D}>React Hooks</Heading>
-          </CornerText>
-          <CornerText right={77} bottom={40}>
-            <Heading size={5} textAlign="right" textColor="quaternary">performed by</Heading>
-            <Heading size={5} textAlign="right" textColor="quaternary">
+          <Corner top="19.2vh" left="5.8vw">
+            <Heading caps style={{ ...styles.brain3D, fontSize: '14.63vh' }}>React Hooks</Heading>
+          </Corner>
+          <Corner right="5.5vw" bottom="6vh">
+            <Heading caps textAlign="right" textColor="quaternary" style={{ fontSize: '7vh' }}>performed by</Heading>
+            <Heading caps textAlign="right" textColor="quaternary" style={{ fontSize: '7vh' }}>
               Oleksiy <span style={styles.brain3DLight}>Лёша</span> Dubovyk
             </Heading>
-          </CornerText>
+          </Corner>
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em 0.6em 0.4em">
           <Heading size={3} caps lineHeight={1} textColor="tertiary">
@@ -193,7 +187,7 @@ export default class Presentation extends React.Component {
             source={sources.hello}
             theme="light"
             height="75vh"
-            style={{ overflowY: 'scroll' }}
+            style={{ overflowY: 'auto' }}
           />
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.hooksBlurred} padding="1.2em">
