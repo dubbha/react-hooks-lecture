@@ -102,7 +102,7 @@ module.exports = {
         include: path.join(__dirname, 'assets')
       },
       {
-        test: /\.webm$/,
+        test: /\.(webm|mp4)$/,
         use: [
           {
             loader: 'file-loader',

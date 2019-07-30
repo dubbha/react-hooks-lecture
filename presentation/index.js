@@ -74,6 +74,7 @@ const sources = {
 /* eslint-disable import/no-unresolved */
 const videos = {
   useYourBrain: require('../assets/useYourBrain.webm'),
+  separationOfConcerns: require('../assets/separationOfConcerns.mp4'),
 };
 
 // Require CSS
@@ -165,10 +166,11 @@ const Corner = ({ top, right, bottom, left, children }) => (
 );
 
 /* eslint-disable react/prop-types */
-const FullScreenVideo = ({ name, format = 'webm' }) => (
+const FullScreenVideo = ({ name, format = 'webm', loop = null }) => (
   <video
     // controls
     autoPlay
+    { ...(loop ? { loop: true } : {}) }
     width="100%"
     height="100%"
     style={{
@@ -662,6 +664,7 @@ export default class Presentation extends React.Component {
           </BlockQuote>
           <Appear><div><Corner right="2vw" bottom="2vh"><Examples names={['SeparationOfConcernsClass', 'SeparationOfConcernsHooks', 'SeparationOfConcernsCustomHooks']} /></Corner></div></Appear>
         </Slide>
+        <FullScreenVideo name="separationOfConcerns" format="mp4" loop />
         <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
           <Heading size={3} style={{ ...styles.brain }}>Custom useInitialRender</Heading>
           <CodePane source={sources.customUseInitialRender} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
