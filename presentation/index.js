@@ -26,52 +26,53 @@ import {
 // import createTheme from 'spectacle/lib/themes/default';
 import createTheme from '../assets/theme';
 
-const images = {
-  useYourBrain: require('../assets/useYourBrain.webp'),
-  marvel: require('../assets/marvel.jpg'),
-  karloff: require('../assets/karloff.jpg'),
-  hooks: require('../assets/hooks.jpg'),
-  hooksBlurred: require('../assets/hooksBlurred.jpg'),
-  danHowOld: require('../assets/danHowOld.webp'),
-  whatever: require('../assets/whatever.jpg'),
-  devCommunity: require('../assets/devCommunity.webp'),
-  wrapperHell: require('../assets/wrapperHell.webp'),
-};
+const imageFileNames = [
+  'useYourBrain.webp',
+  'marvel.jpg',
+  'karloff.webp',
+  'hooks.jpg',
+  'hooksBlurred.jpg',
+  'danHowOld.webp',
+  'whatever.jpg',
+  'devCommunity.webp',
+  'wrapperHell.webp',
+];
+const reqImage = name => ({ [name.split('.')[0]]: require(`../assets/${name}`) });
+const images = imageFileNames.reduce((acc, name) => ({ ...acc, ...reqImage(name) }), {});
 
+const sourceFileNames = [
+  'hoc.js',
+  'hocWithRouter.js',
+  'renderProp.js',
+  'giantComponent.js',
+  'useState.js',
+  'useStateFunctionalUpdates.js',
+  'useStateLazyInitialState.js',
+  'useStateFunctionalUpdatesPassingFunction.js',
+  'useEffect.js',
+  'useEffectConditional.js',
+  'useEffectOnMount.js',
+  'useEffectCleanup.js',
+  'useEffectFetch.js',
+  'useContext.js',
+  'useReducer.js',
+  'useReducerInit.js',
+  'useCallback.js',
+  'useMemo.js',
+  'useRef.js',
+  'useImperativeHandle.js',
+  'useLayoutEffect.js',
+  'useDebugValue.js',
+  'customHook.js',
+  'customUseFormInput.js',
+  'customUseDocumentTitle.js',
+  'customUseInitialRender.js',
+  'customUseCookie.js',
+  'customUseDebounce.js',
+];
 const reqSource = name => ({ [name.split('.')[0]]: require(`../assets/code/${name}`) });
+const sources = sourceFileNames.reduce((acc, name) => ({ ...acc, ...reqSource(name) }), {});
 
-const sources = {
-  hoc: require('../assets/code/hoc.jsx'),
-  hocWithRouter: require('../assets/code/hocWithRouter.jsx'),
-  renderProp: require('../assets/code/renderProp.jsx'),
-  giantComponent: require('../assets/code/giantComponent.jsx'),
-  useState: require('../assets/code/useState.js'),
-  ...reqSource('useStateFunctionalUpdates.jsx'),
-  ...reqSource('useStateLazyInitialState.js'),
-  ...reqSource('useStateFunctionalUpdatesPassingFunction.jsx'),
-  ...reqSource('useEffect.js'),
-  ...reqSource('useEffectConditional.js'),
-  ...reqSource('useEffectOnMount.js'),
-  ...reqSource('useEffectCleanup.js'),
-  ...reqSource('useEffectFetch.js'),
-  ...reqSource('useContext.js'),
-  ...reqSource('useReducer.js'),
-  ...reqSource('useReducerInit.js'),
-  ...reqSource('useCallback.js'),
-  ...reqSource('useMemo.js'),
-  ...reqSource('useRef.js'),
-  ...reqSource('useImperativeHandle.js'),
-  ...reqSource('useLayoutEffect.js'),
-  ...reqSource('useDebugValue.js'),
-  ...reqSource('customHook.js'),
-  ...reqSource('customUseFormInput.js'),
-  ...reqSource('customUseDocumentTitle.js'),
-  ...reqSource('customUseInitialRender.js'),
-  ...reqSource('customUseCookie.js'),
-  ...reqSource('customUseDebounce.js'),
-};
-
-/* eslint-disable import/no-unresolved */
 const videos = {
   useYourBrain: require('../assets/useYourBrain.webm'),
   separationOfConcerns: require('../assets/separationOfConcerns.mp4'),
@@ -555,7 +556,7 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
-          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useContext</Heading>
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useReducer</Heading>
           <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
             Passing the initial state:
           </Text>
@@ -602,9 +603,6 @@ export default class Presentation extends React.Component {
         <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
           <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useImperativeHandle</Heading>
           <CodePane source={sources.useImperativeHandle} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="4vh 0 0 0">
-            useRef returns a mutable ref object whose .current property is initialized to the passed argument (initialValue).
-          </Text>
           <Text textColor="secondary" textSize="5vh" textAlign="left" margin="4vh 0 0 0">
             useImperativeHandle customizes the instance value that is exposed to parent components when using ref. useImperativeHandle should be used with forwardRef.
           </Text>
