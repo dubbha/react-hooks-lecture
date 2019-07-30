@@ -102,11 +102,21 @@ module.exports = {
         include: path.join(__dirname, 'assets')
       },
       {
-        test: /\.(webm|mp4)$/,
+        test: /\.webm$/,
         use: [
           {
             loader: 'file-loader',
             options: { mimetype: 'video/webm' }
+          }
+        ],
+        include: path.join(__dirname, 'assets')
+      },
+      {
+        test: /\.mp4$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { mimetype: 'video/mp4' }
           }
         ],
         include: path.join(__dirname, 'assets')

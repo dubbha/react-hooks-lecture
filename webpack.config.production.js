@@ -65,10 +65,6 @@ module.exports = {
         use: [
           {
             loader: "url-loader",
-
-            options: {
-              limit: 8192
-            }
           }
         ]
       },
@@ -91,6 +87,26 @@ module.exports = {
           {
             loader: 'url-loader',
             options: { mimetype: 'image/webp' }
+          }
+        ],
+        include: path.join(__dirname, 'assets')
+      },
+      {
+        test: /\.webm$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { mimetype: 'video/webm' }
+          }
+        ],
+        include: path.join(__dirname, 'assets')
+      },
+      {
+        test: /\.mp4$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { mimetype: 'video/mp4' }
           }
         ],
         include: path.join(__dirname, 'assets')
