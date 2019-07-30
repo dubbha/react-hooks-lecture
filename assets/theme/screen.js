@@ -325,7 +325,11 @@ const screen = (colorArgs = defaultColors, fontArgs = defaultFonts) => {
         margin: '0.5rem auto'
       },
       link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        color: colors.brainDark,
+        '&:hover': {
+          color: colors.brainLight
+        }
       },
       listItem: {
         fontSize: '2.66rem'

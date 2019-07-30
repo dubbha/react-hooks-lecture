@@ -100,6 +100,16 @@ module.exports = {
           }
         ],
         include: path.join(__dirname, 'assets')
+      },
+      {
+        test: /\.webm$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { mimetype: 'video/webm' }
+          }
+        ],
+        include: path.join(__dirname, 'assets')
       }
     ]
   }
