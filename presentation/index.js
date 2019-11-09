@@ -36,6 +36,7 @@ const imageFileNames = [
   'whatever.jpg',
   'devCommunity.webp',
   'wrapperHell.webp',
+  'reduxKiller.webp'
 ];
 const reqImage = name => ({ [name.split('.')[0]]: require(`../assets/${name}`) });
 const images = imageFileNames.reduce((acc, name) => ({ ...acc, ...reqImage(name) }), {});
@@ -43,7 +44,8 @@ const images = imageFileNames.reduce((acc, name) => ({ ...acc, ...reqImage(name)
 const sourceFileNames = [
   'hoc.js',
   'hocWithRouter.js',
-  'renderProp.js',
+  'renderProps.js',
+  'renderPropsChildren.js',
   'giantComponent.js',
   'useState.js',
   'useStateFunctionalUpdates.js',
@@ -69,6 +71,8 @@ const sourceFileNames = [
   'customUseInitialRender.js',
   'customUseCookie.js',
   'customUseDebounce.js',
+  'reactReduxApiHooks.js',
+  'reactRouterApiHooks.js',
 ];
 const reqSource = name => ({ [name.split('.')[0]]: require(`../assets/code/${name}`) });
 const sources = sourceFileNames.reduce((acc, name) => ({ ...acc, ...reqSource(name) }), {});
@@ -317,7 +321,16 @@ export default class Presentation extends React.Component {
           <Heading size={3} style={{ ...styles.brain, lineHeight: 1.2 }}>Render Props</Heading>
           <CodePane
             lang="jsx"
-            source={sources.renderProp}
+            source={sources.renderProps}
+            theme="light"
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          />
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em 0.6em 0.4em">
+          <Heading size={3} style={{ ...styles.brain, lineHeight: 1.2 }}>Render Props</Heading>
+          <CodePane
+            lang="jsx"
+            source={sources.renderPropsChildren}
             theme="light"
             style={{ maxHeight: '80vh', overflowY: 'auto' }}
           />
@@ -683,10 +696,25 @@ export default class Presentation extends React.Component {
             <Quote textColor="secondary" style={{ fontSize: '5vh', lineHeight: 1.2, borderColor: theme.screen.colors.secondary }}>
               Throw this thing on context...
             </Quote>
-            <Cite margin="10px 0 0 30px">Ryan Florance</Cite>
+            <Cite margin="10px 0 0 30px">Ryan Florence</Cite>
           </BlockQuote>
-          <Appear><div><Corner right="2vw" bottom="2vh"><Examples names={['ReduxKiller']} /></Corner></div></Appear>
+          {/* <Appear><div><Corner right="2vw" bottom="2vh"><Examples names={['ReduxKiller']} /></Corner></div></Appear> */}
+          <Appear><div style={{ fontSize: '4vh' }}><Corner right="2vw" bottom="2vh">useReducer + useContext = <Example name={'ReduxKiller'} /></Corner></div></Appear>
         </Slide>
+        <Slide>
+          <Image src={images.reduxKiller} />
+          <Corner right="2vw" bottom="2vh"><Link href="https://medium.com/javascript-scene/do-react-hooks-replace-redux-210bab340672" target="_blank" style={{ fontSize: '4vh' }}>Do React Hooks Replace Redux?</Link></Corner>
+        </Slide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain }}>React Redux API Hooks</Heading>
+          <CodePane source={sources.reactReduxApiHooks} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+          <Corner right="2vw" bottom="2vh"><Examples names={['ReactReduxApiHooks']} /></Corner>
+        </FullScreenSlide>
+        <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
+          <Heading size={3} style={{ ...styles.brain }}>React Router API Hooks</Heading>
+          <CodePane source={sources.reactRouterApiHooks} lang="jsx" theme="light" style={{ maxHeight: '80vh', overflowY: 'auto' }} />
+          <Corner right="2vw" bottom="2vh"><Examples names={['ReactRouterApiHooks']} /></Corner>
+        </FullScreenSlide>
         <FullScreenSlide padding={0}>
           <iframe src="https://codesandbox.io/embed/j0y0vpz59" style={{ width: '100vw', height: '100vh', margin: 0, border: 'none' }}/>
         </FullScreenSlide>
