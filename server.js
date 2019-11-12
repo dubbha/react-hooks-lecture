@@ -20,11 +20,11 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.listen(serverPort, "localhost", function (err) {
+app.listen(serverPort, "127.0.0.1", function (err) {
   if (err) {
     console.log(err);
     return;
   }
 
-  console.log("Listening at http://localhost:" + serverPort);
+  console.log("Listening at http://127.0.0.1:" + serverPort);
 });
