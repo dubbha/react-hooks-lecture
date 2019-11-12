@@ -415,10 +415,10 @@ export default class Presentation extends React.Component {
             theme="light"
             style={{ maxHeight: '80vh', overflowY: 'auto' }}
           />
-          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 0 0">
+          <Text textColor="secondary" textSize="5vh" textAlign="left" margin="2vh 0 6vh">
             If the new state is computed using the previous state, you can pass a function to setState. The function will receive the previous value, and return an updated value.
           </Text>
-          <Corner right="2vw" bottom="2vh"><Examples names={['UseStateFunctionalUpdates', 'UseStateFunctionalUpdatesObject']} /></Corner>
+          <Corner right="2vw" bottom="2vh"><Examples names={['UseStateFunctionalUpdates', 'UseStateFunctionalUpdatesObject', 'UseStateFunctionalUpdatesObject2', 'UseStateFunctionalUpdatesObject3']} /></Corner>
         </FullScreenSlide>
         <FullScreenSlide bgImage={images.hooksBlurred} padding="0 0.4em">
           <Heading size={3} style={{ ...styles.brain, lineHeight: 1 }}>useState</Heading>
